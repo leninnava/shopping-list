@@ -28,12 +28,12 @@ const TodoForm: FC<TodoFormProps> = ({ todoItemsSetter }) => {
   return (
     <form
       onSubmit={addShoppingItem}
-      className="flex flex-col items-center gap-4 rounded-md bg-blue-400 p-2"
+      className="flex flex-col items-center gap-4 rounded-md p-2"
     >
-      <label className='text-white font-medium' htmlFor="item-name">Enter a new item</label>
+      <label className='font-medium' htmlFor="item-name">Enter a new item</label>
       <input className='rounded-sm py-1' ref={inputValueRef} type="text" name="item-name" id="item-name" />
       <button
-        className="w-fit bg-white px-2"
+        className="w-fit"
       >
         Add
       </button>

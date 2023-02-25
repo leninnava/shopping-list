@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState, type FC } from 'react'
+import { motion as m } from 'framer-motion'
 
 interface TodoItemProps {
   id: number
@@ -26,12 +27,32 @@ const TodoItem: FC<TodoItemProps> = ({ id, name, deleteHandler }) => {
   }
 
   return (
-    <li className={`flex gap-2 justify-between items-center ${isDeleting ? 'bg-slate-400' : 'bg-blue-400'} rounded-md p-2`}>
-      <span className="text-white font-medium">{name}</span>
-      {isDeleting && <button onClick={undoDelete} className="text-white font-medium">Undo?</button>}
+    <m.li
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={`flex items-center justify-between gap-2 ${
+        isDeleting ? 'bg-slate-400' : 'bg-teal-700'
+      } rounded-md p-2`}
+    >
+      <span className="font-medium text-white">{name}</span>
+      {isDeleting && (
+        <button onClick={undoDelete} className="font-medium text-white">
+          Undo?
+        </button>
+      )}
 
-      {!isDeleting && <button onClick={() => { deleteTodo(id) }} className="bg-white rounded-md px-2">Delete</button>}
-      </li>
+      {!isDeleting && (
+        <button
+          onClick={() => {
+            deleteTodo(id)
+          }}
+          className="rounded-md bg-white px-2"
+        >
+          Delete
+        </button>
+      )}
+    </m.li>
   )
 }
 
